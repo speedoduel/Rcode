@@ -1,0 +1,220 @@
+---
+title: "Lab 1 R Worksheet - An Introduction to R"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+The intention of this worksheet is to introduce you to some of the basic commands in R. Note that any of the "white" areas in this file (called an R notebook) are where text can be input into the document and any of the "grey" areas are where R code is entered (called "code chunks").  To execute any of the code chunks, push the run button (looks like a "play" button) in the top right of the code chunk (or, alternatively, "Ctrl+Shift+Enter" will also run the code chunk).  Code chunks will always start with '''{r} and end with '''.  If necessary, to insert a code chunk you can click on "Insert" along the tool bar and choose R or "Ctrl+Alt+I".  For the most part, code chunks will be given and you won't need to insert them into the file.
+
+#PART 1 - DEFINING VARIABLES
+
+To assign a scalar (i.e. a number) or an array/vector (i.e. a list of numbers) a variable name in R simply use <- (less than symbol followed by minus symbol). In addition, vectors are defined using c(ELEMENTS_OF_VECTOR).  Putting all of this together: VARIABLE_NAME<-c(ELEMENTS_OF_VECTOR)  (or you could just put a single number instead of c(...) if its a scalar).
+
+**Pre-Lab Example**
+
+Run the following code by clicking on the "play" button in the top right of the code chunk. The output will appear immediately after the chunk.  Notice that when X and Y are defined the results are only displayed by typing X or Y afterwards.
+
+```{r}
+X<-2 #Assigns X the value of 2
+X #Displays X
+Y<-c(1,2,3,4) #Assigns the vector/list of numbers (1,2,3,4) to Y
+Y #Displays Y
+```
+
+**Pre-Lab Exercise**
+
+Now try it yourself.  Define P as the scalar value 4 and Q as the vector (2,4,6,8) in the chunk below and then run the code. 
+
+```{r}
+P<-4
+Q<-c(2,4,6,8)
+P
+Q
+```
+
+Note: For vectors with a common increment (i.e. increase) in stepsize - for example, Q above starts at 2 and increases by 2 units at each step - the command seq(STARTING_VALUE,END_VALUE,INCREMENT_SIZE)
+may be useful.  For Q it wouldn't be necessary to use but below you will find examples where it is indeed necessary.
+
+**Pre-Lab Exercise**
+
+a) Define R as the vector from -99 to 99 by increments of 2.
+
+b) Define S as the vector starting at 200 and going to 57.5 where consecutive numbers have a difference of 7.5.
+
+```{r}
+R<-seq(-99,99,2)
+S<-seq(200,57.5,-7.5)
+R
+S
+```
+
+#PART 2 - BASIC OPERATIONS
+
+Below are basic operations that can be completed on scalars and vectors in R.  It is very important to note that the operations on vectors are "element by element" (e.g. Y+Q=(1,2,3,4)+(2,4,6,8)=(3,6,9,12)).  If vectors aren't the same length, a warning will appear but a computation will still be completed (we'll take a further look at this in one of the following exercises).
+
+  +               addition
+  
+  -               subtraction
+  
+  *               multiplication
+  
+  /               division
+  
+  ^               exponentiation
+  
+  sqrt(VARIABLE)  square root of variable
+  
+
+**Pre-Lab Exercise**
+
+Find each of the following by entering appropriate commands in the code chunks that follow. To reveal the 'math' (i.e. the questions) below for the first time, click on the code between the dollar signs.  For any further reveals, click on the 'down arrow' below and to the right of the code.  
+
+Note that f) involves vectors of different lengths (how is R determining the result?) and g) and h) involve both scalars and vectors.
+  
+  $$a)\> X+P \\ b)\>P^X \\ c)\>Q-Y \\d)\>Q\times Y\\e)\>\sqrt\frac{Y}{Q} \\f)\>R+S \\g)\>P\times S \\h)\>P^R$$
+  
+```{r}
+#a)
+X+P
+```
+
+```{r}
+#b)
+P^X
+
+```
+
+```{r}
+#c)
+Q-Y
+```
+
+```{r}
+#d)
+Q*Y
+```
+
+```{r}
+#e)
+sqrt(Q/Y)
+```
+
+```{r}
+#f)
+R*S
+```
+
+```{r}
+#g)
+P^S
+```
+
+```{r}
+#h)
+P^R
+```
+
+Note: In the output above, e-NUMBER or e+NUMBER is equivalent to the scientific notation 10^(-NUMBER) or 10^(+NUMBER), respectively.
+
+
+#PART 3 - IMPORTING DATA
+
+Data from .xlsx, .csv, .txt files (and more) can be imported into R. How to import these data sets will be discussed in greater detail at a future date. For now, we will use pre-loaded data sets in R.  
+
+[Note: To view a list of some of the pre-loaded data sets type data() in a code chunk and execute it.]
+
+**Pre-Lab Example**
+
+Run the following code to import the pre-loaded data set 'mtcars' (calling it CARS) which represents fuel consumption and automobile design features for 32 automobiles from 1973-74.
+
+```{r}
+CARS<-mtcars
+CARS
+```
+
+Notice that the data set has 32 rows and 11 columns.  The rows represent the data for each type of car and the columns represent the variables which can then be analyzed.
+
+We won't go into much more of a discussion on importing data sets at this point.  When needed, the idea of importing data sets in R will be re-introduced (truthfully, you will become a lot more familiar with importing data sets and analyzing them in ST260 in the winter term).
+
+#PART 4 - SIMPLE PRE-DEFINED FUNCTIONS
+
+R has some pre-defined functions that may be introduced to you throughout the term in ST259.  A brief list of some of the commands are given below (by no means is this list even close to all of them).
+
+  length(DATA_SET$VARIABLE_NAME)    gives the length of a vector or variable
+  
+  dim(DATA_SET)                     gives the dimensions of a data set (number of rows and columns)
+  
+  class(DATA_SET$VARIABLE_NAME)     gives the type of a data that a variable is (numeric, string, etc.)
+  
+  names(DATA_SET)                   gives the names of headers in a data set
+  
+  max(DATA_SET$VARIABLE_NAME)       gives largest value of a variable
+ 
+  min(DATA_SET$VARIABLE_NAME)       gives smallest value of a variable
+  
+  mean(DATA_SET$VARIABLE_NAME)      gives the average value of a variable
+  
+  median(DATA_SET$VARIABLE_NAME)    gives the "middle" value of a variable
+  
+  sum(DATA_SET$VARIABLE_NAME)       gives the sum of the values in a variable
+  
+  summary(DATA_SET$VARIABLE_NAME)   gives summary statistics of a data set (NOTE: VARIABLE_NAME not necessary)
+ 
+**Pre-Lab Exercise**
+
+Use the commands above to find each of the following in the CARS (i.e. mtcars) data set. 
+
+[Note: CARS is the data set and the column names within the data set are the variable names.] 
+
+```{r}
+#The dimension of CARS
+dim(CARS)
+#The type of data in the cyl column
+class(CARS$cyl)
+#The best fuel consumption (i.e. minimum mpg)
+min(CARS$mpg)
+#The worst fuel consumption
+max(CARS$mpg)
+#The average fuel consumption
+mean(CARS$mpg)
+#A summary of the CARS data set (Note: some of your values above should be in this table)
+summary(CARS)
+```
+  
+#PART 5 - CREATING R FUNCTIONS/SIMULATIONS
+
+Creating R functions (or simulations) is beyond the scope of this course.  You will, however, be asked to run these functions and analyze results.
+
+An example of an R function is the one below.  Please read it carefully to understand the simulation that it runs. 
+
+[Note: The comments within the R function are where instructions and explanations are "hidden" on how to get the function to work.  A comment in R script is preceeded by a `#' to ensure that the comment will not be read when the code is executed.]
+
+**Pre-Lab Exercise**
+
+```{r}
+#This code (or function) simulates the rolling of two six-sided fair dice and summing their results together.
+two.dice<-function(){
+dice<-sample(1:6,size=2,replace=TRUE)
+return(sum(dice))
+}
+#Now type two.dice() in the space below and run the code to complete the simulation of rolling two dice once.
+two.dice()
+
+```
+
+
+```{r}
+#To complete the simulation n times, enter rolls<-replicate(n,two.dice()) in the space below. Be sure to substitute appropriately for n (the number of simulations that you want to run). 
+#You can then type: i) rolls to display all of the outcomes, 
+#ii) table(rolls) for a summary of the outcomes and iii) barplot(rolls) to generate a bar chart of the outcomes.
+rolls<-replicate(14,two.dice())
+table(rolls)
+barplot(rolls)
+
+```
+
+That complete this week's worksheet on an introduction to R.  You do not need to hand this in before your lab.  However, you will use it in completing some of the problems on the upcoming lab assignment. See you in the first lab on Monday, May 17th!
+

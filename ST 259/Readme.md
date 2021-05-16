@@ -1,1 +1,2 @@
-
+##So here I will be showing most of my content for ST259 LABS they all functioned on R
+##Majorly basics covered here including some probability functions which are inbuilt in R

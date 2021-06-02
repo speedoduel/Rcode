@@ -1,0 +1,120 @@
+---
+title: "Lab 2 Worksheet"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+Recall that any of the "white" areas in this file (called an R notebook) are where text can be input into the document and any of the "grey" areas are where R code is entered (called "code chunks").  To execute any of the code chunks, push the run button (looks like a "play" button) in the top right of the code chunk (or, alternatively, "Ctrl+Shift+Enter" will also run the code chunk).  Code chunks will always start with '''{r} and end with '''.  If necessary, to insert a code chunk you can click on "Insert" along the tool bar and choose R or "Ctrl+Alt+I".  For the most part, code chunks will be given and you won't need to insert them into the file.
+
+
+**PERMUTATIONS AND COMBINATIONS**
+
+The intention of this worksheet is to look at some of the R commands associated with counting rules in probability.
+
+To use counting commands in R, the gtool package in R can be of assistance.  To install the package, run the code chunk below:
+
+```{r}
+#install.packages('gtools')
+library(gtools)
+```
+
+**Permutations with replacement**
+
+The number of permutations with replacement is simply n to the exponent r
+where order is important (e.g. 1,2,3 is different from 3,2,1),
+n is the number of items to randomly select from, 
+and
+r is the number of times you will do the selection.
+
+To do this in R, there are two helpful commands:
+
+i) permutations(n,r,x,repeats.allowed=TRUE)
+ 
+- where x is the vector of items to select from [recall: to define a vector use the command VECTOR_NAME<-c(ELEMENTS_OF_VECTOR_SEPARATED_BY_COMMAS) or VECTOR_NAME<-c(A:B) if it is a sequential list from integer A to integer B.] 
+
+- the output from the command lists all of the possible permutations.
+
+ii) nrow(permutations(n,r,x,repeats.allowed=TRUE)) 
+  
+- which gives the number of permutations.
+  
+*Example*
+
+Run the following code to find i) all of the 2 letter "words" that can be written with the letters {M,A,T,H} (with replacement) and ii) the total number of such 2 letter "words".
+
+```{r}
+#Part i)
+x<-c("M","A","T","H") #toh isme balls store karke bhi kar sakte hau
+permutations(2,2,x,repeats.allowed=TRUE)
+#Part ii)
+nrow(permutations(4,2,x,repeats.allowed=FALSE)) #nrow permutations gives us the total numbr of values we can get
+nrow(permutations(4,2,x,repeats.allowed=FALSE))
+```
+
+Note that if you change the command above to permutations(3,2,x,repeats.allowed=TRUE) (i.e. change the 4 to a 3) 
+that R automatically drops the "T" (as its the letter furthest along in the alphabet) from x and displays the 2 letters "words" from {M,A,H}.
+Similarly, changing the 4 to a 2 displays the 2 letters "words" AA, AH, HA, and HH.
+
+**Permutations without replacement**
+
+The number of permutations without replacement is n x (n-1) x ... x (n-r+1) or, more simply, n!/(n-r)!, where order is still important, n is the initial number of items to randomly select from, and r is the number of times you will do the selection.
+
+The commands used are the same as those with one slight change: TRUE should be set to FALSE.
+
+*Exercise*
+
+Redo the example above but this time find i) all of the 2 letter "words" that can be written with the letters {M,A,T,H} without replacement and ii) the total number of such 2 letter "words".  Also, iii) find all 2 letter "words" from {M,A,H} (without replacement) by changing one value in the permutations(...) command.
+
+```{r}
+#Part i)
+permutations(4,2,x,repeats.allowed=FALSE)
+
+#Part ii)
+nrow(permutations(4,2,x,repeats.allowed=FALSE))
+#Part iii)
+permutations(3,2,x,repeats.allowed=FALSE)
+```
+
+**Combinations**
+
+The number of combinations (i.e. order unimportant) when selecting r items from a total of n without replacement is simply n!/(r!(n-r)!) (notice the similarity with a permutation - we just divide by r! so that the combinations are counted only once).
+
+The commands in R for combinations are similar to those for permutations - simply change 'permutations' to 'combinations' in the commands.  Even simpler, for the nrow(...) command you can perform the change mentioned or just use the command choose(n,r) instead.
+
+*Exercise*
+
+Redo the first example above but this time find i) all 2 letter combinations from {M,A,T,H} without replacement where results like "MA" and "AM" are deemed equivalent and ii) the total number of such 2 letter combinations.
+
+```{r}
+#Part i)
+combinations(4,2,x,repeats.allowed=FALSE)
+
+#Part ii)
+nrow(combinations(4,2,x,repeats.allowed=FALSE))
+```
+
+**QUESTION #5a) ON ASSIGNMENT**
+
+Read through Question #5a) on the assignment and enter appropriate code in the "code chunk" below.
+
+```{r}
+
+```
+
+**QUESTION #5b) ON ASSIGNMENT**
+
+Read through Question #5b) on the assignment and enter appropriate code in the "code chunk" below.
+
+```{r}
+
+```
+
+**QUESTION #5c) ON ASSIGNMENT**
+
+Read through Question #5c) on the assignment and enter appropriate code in the "code chunk" below.
+
+```{r}
+
+```
